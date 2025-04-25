@@ -1,0 +1,88 @@
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to right, #a5d3e2, #5e8dec);
+    padding-top: 20px;
+}
+
+h1 {
+    color: #333;
+}
+
+.container {
+    max-width: 75%;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+}
+
+form {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.img-border-radius {
+    border-radius: 15px;
+    width: 40%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+}
+
+input, select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+button {
+    background-color: #007BFF;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 12px;
+    border: none;
+    border-radius: 4px;
+    width: 200px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+select {
+    font-size: 16px;
+    background-color: #fff;
+    color: #333;
+}
+
+select:focus {
+    border-color: #007BFF;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.result {
+    font-size: 18px;
+    background: #fff;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+.result p {
+    margin: 5px 0;
+}

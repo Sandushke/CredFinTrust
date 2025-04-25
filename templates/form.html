@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>CredFinTrust</title>
+</head>
+<body>
+    <div class="container">
+        <div class="header text-center">
+            <h1>Welcome To CredFinTrust!</h1>
+            <img src="{{ url_for('static', filename='meter.jpeg') }}" alt="meter image" class="img-border-radius">
+        </div>
+        <form method="POST" action="/predict" id="data-form">
+            <div class="row">
+                <!-- Row 1 -->
+                <div class="col-md-4">
+                    <label for="member_id">Member ID:</label>
+                    <input type="number" id="member_id" name="member_id" required>
+                </div>
+                <div class="col-md-4">
+                    <label for="loan_amnt">Loan Amount:</label>
+                    <input type="number" id="loan_amnt" name="loan_amnt" step="0.01" required>
+                </div>
+                <div class="col-md-4">
+                    <label for="funded_amnt">Funded Amount:</label>
+                    <input type="number" id="funded_amnt" name="funded_amnt" step="0.01" required>
+                </div>
+
+                <!-- Row 2 -->
+                <div class="col-md-4">
+                    <label for="funded_amnt_inv">Funded Amount by Investors:</label>
+                    <input type="number" id="funded_amnt_inv" name="funded_amnt_inv" step="0.01" required>
+                </div>
+                <div class="col-md-4">
+                    <label for="installment">Installment:</label>
+                    <input type="number" id="installment" name="installment" step="0.01" required>
+                </div>
+                <div class="col-md-4">
+                    <label for="annual_inc">Annual Income:</label>
+                    <input type="number" id="annual_inc" name="annual_inc" step="0.01" required>
+                </div>
+
+                <!-- Row 3 -->
+                <div class="col-md-4">
+                    <label for="dti">Debt-to-Income (DTI):</label>
+                    <input type="number" id="dti" name="dti" step="0.01" required>
+                </div>
+                <div class="col-md-4">
+                    <label for="inq_last_6mths">Inquiries Last 6 Months:</label>
+                    <input type="number" id="inq_last_6mths" name="inq_last_6mths" required>
+                </div>
+                <div class="col-md-4">
+                    <label for="revol_util">Revolving Utilization Rate:</label>
+                    <input type="number" id="revol_util" name="revol_util" step="0.01" required>
+                </div>
+
+                <!-- Row 4 -->
+                <div class="col-md-4">
+                    <label for="out_prncp">Outstanding Principal:</label>
+                    <input type="number" id="out_prncp" name="out_prncp" step="0.01" required>
+                </div>
+                <div class="col-md-4">
+                    <label for="out_prncp_inv">Outstanding Principal (Investors):</label>
+                    <input type="number" id="out_prncp_inv" name="out_prncp_inv" step="0.01" required>
+                </div>
+                <div class="col-md-4">
+                    <label for="total_pymnt">Total Payment:</label>
+                    <input type="number" id="total_pymnt" name="total_pymnt" step="0.01" required>
+                </div>
+
+                <!-- Row 5 -->
+                <div class="col-md-4">
+                    <label for="total_pymnt_inv">Total Payment (Investors):</label>
+                    <input type="number" id="total_pymnt_inv" name="total_pymnt_inv" step="0.01" required>
+                </div>
+                <div class="col-md-4">
+                    <label for="total_rec_prncp">Total Received Principal:</label>
+                    <input type="number" id="total_rec_prncp" name="total_rec_prncp" step="0.01" required>
+                </div>
+                <div class="col-md-4">
+                    <label for="last_pymnt_amnt">Last Payment Amount:</label>
+                    <input type="number" id="last_pymnt_amnt" name="last_pymnt_amnt" step="0.01" required>
+                </div>
+
+                <!-- Row 6 -->
+                <div class="col-md-4">
+                    <label for="open_il_12m">Open Installment Loans (12 months):</label>
+                    <input type="number" id="open_il_12m" name="open_il_12m" required>
+                </div>
+                <div class="col-md-4">
+                    <label for="open_il_24m">Open Installment Loans (24 months):</label>
+                    <input type="number" id="open_il_24m" name="open_il_24m" required>
+                </div>
+                <div class="col-md-4">
+                    <label for="mths_since_rcnt_il">Months Since Recent Installment Loan:</label>
+                    <input type="number" id="mths_since_rcnt_il" name="mths_since_rcnt_il" required>
+                </div>
+
+                <!-- Row 7 -->
+                <div class="col-md-4">
+                    <label for="il_util">Installment Loan Utilization Rate:</label>
+                    <input type="number" id="il_util" name="il_util" step="0.01" required>
+                </div>
+                <div class="col-md-4">
+                    <label for="max_bal_bc">Maximum Balance on Bankcard:</label>
+                    <input type="number" id="max_bal_bc" name="max_bal_bc" step="0.01" required>
+                </div>
+                <div class="col-md-4">
+                    <label for="all_util">Balance-to-Credit Limit on All Trades:</label>
+                    <input type="number" id="all_util" name="all_util" step="0.01" required>
+                </div>
+
+                <!-- Row 8 -->
+                <div class="col-md-4">
+                    <label for="total_rev_hi_lim">Total Revolving High Credit/Limit:</label>
+                    <input type="number" id="total_rev_hi_lim" name="total_rev_hi_lim" step="0.01" required>
+                </div>
+                <div class="col-md-4">
+                    <label for="inq_fi">Inquiries for Finance Loans:</label>
+                    <input type="number" id="inq_fi" name="inq_fi" required>
+                </div>
+                <div class="col-md-4">
+                    <label for="inq_last_12m">Inquiries Last 12 Months:</label>
+                    <input type="number" id="inq_last_12m" name="inq_last_12m" required>
+                </div>
+
+                <!-- Row 9 -->
+                <div class="col-md-4">
+                    <label for="acc_open_past_24mths">Open Accounts in Past 24 Months:</label>
+                    <input type="number" id="acc_open_past_24mths" name="acc_open_past_24mths" required>
+                </div>
+                <div class="col-md-4">
+                    <label for="bc_open_to_buy">Bankcard Open to Buy:</label>
+                    <input type="number" id="bc_open_to_buy" name="bc_open_to_buy" step="0.01" required>
+                </div>
+                <div class="col-md-4">
+                    <label for="bc_util">Bankcard Utilization Rate:</label>
+                    <input type="number" id="bc_util" name="bc_util" step="0.01" required>
+                </div>
+
+                <!-- Row 10 -->
+                <div class="col-md-4">
+                    <label for="mo_sin_old_rev_tl_op">Months Since Oldest Revolving Trade:</label>
+                    <input type="number" id="mo_sin_old_rev_tl_op" name="mo_sin_old_rev_tl_op" required>
+                </div>
+                <div class="col-md-4">
+                    <label for="mo_sin_rcnt_tl">Months Since Most Recent Trade:</label>
+                    <input type="number" id="mo_sin_rcnt_tl" name="mo_sin_rcnt_tl" required>
+                </div>
+                <div class="col-md-4">
+                    <label for="mort_acc">Mortgage Accounts:</label>
+                    <input type="number" id="mort_acc" name="mort_acc" required>
+                </div>
+
+                <!-- Row 11 -->
+                <div class="col-md-4">
+                    <label for="mths_since_recent_inq">Months Since Recent Inquiry:</label>
+                    <input type="number" id="mths_since_recent_inq" name="mths_since_recent_inq" required>
+                </div>
+                <div class="col-md-4">
+                    <label for="num_bc_sats">Number of Bankcard Satisfactory Accounts:</label>
+                    <input type="number" id="num_bc_sats" name="num_bc_sats" required>
+                </div>
+                <div class="col-md-4">
+                    <label for="num_bc_tl">Number of Bankcard Trades:</label>
+                    <input type="number" id="num_bc_tl" name="num_bc_tl" required>
+                </div>
+
+                <!-- Row 12 -->
+                <div class="col-md-4">
+                    <label for="num_rev_accts">Number of Revolving Accounts:</label>
+                    <input type="number" id="num_rev_accts" name="num_rev_accts" required>
+                </div>
+                <div class="col-md-4">
+                    <label for="num_tl_op_past_12m">Number of Trades Opened in Past 12 Months:</label>
+                    <input type="number" id="num_tl_op_past_12m" name="num_tl_op_past_12m" required>
+                </div>
+                <div class="col-md-4">
+                    <label for="pct_tl_nvr_dlq">Percent of Trades Never Delinquent:</label>
+                    <input type="number" id="pct_tl_nvr_dlq" name="pct_tl_nvr_dlq" step="0.01" required>
+                </div>
+
+                <!-- Row 13 -->
+                <div class="col-md-4">
+                    <label for="percent_bc_gt_75">Percent of Bankcards > 75% Limit:</label>
+                    <input type="number" id="percent_bc_gt_75" name="percent_bc_gt_75" step="0.01" required>
+                </div>
+                <div class="col-md-4">
+                    <label for="tot_hi_cred_lim">Total High Credit/Limit:</label>
+                    <input type="number" id="tot_hi_cred_lim" name="tot_hi_cred_lim" step="0.01" required>
+                </div>
+                <div class="col-md-4">
+                    <label for="total_bc_limit">Total Bankcard Limit:</label>
+                    <input type="number" id="total_bc_limit" name="total_bc_limit" step="0.01" required>
+                </div>
+
+                <!-- Row 14: Disaster Validation Fields -->
+                <div class="col-md-4">
+                    <label for="purpose">Loan Purpose:</label>
+                    <input type="text" id="purpose" name="purpose" required>
+                </div>
+                <div class="col-md-4">
+                    <label for="addr_state">Address State:</label>
+                    <input type="text" id="addr_state" name="addr_state" maxlength="2" required>
+                </div>
+                <div class="col-md-4">
+                    <label for="loan_issue_date">Loan Issue Date (DD-MMM, e.g., 25-Feb):</label>
+                    <input type="text" id="loan_issue_date" name="loan_issue_date" placeholder="25-Feb" pattern="^\d{1,2}-[A-Za-z]{3}$" required>
+                </div>
+
+                <!-- Row 15: Verification Status -->
+                <div class="col-md-6">
+                    <label for="verification_status">Verification Status:</label>
+                    <select id="verification_status" name="verification_status" class="form-control" required>
+                        <option value="Not Verified">Not Verified</option>
+                        <option value="Verified">Verified</option>
+                        <option value="Source Verified">Source Verified</option>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label for="verification_status_joint">Verification Status (Joint):</label>
+                    <select id="verification_status_joint" name="verification_status_joint" class="form-control" required>
+                        <option value="Not Verified">Not Verified</option>
+                        <option value="Verified">Verified</option>
+                        <option value="Source Verified">Source Verified</option>
+                    </select>
+                </div>
+
+                <!-- Row 16: Term -->
+                <div class="col-md-12">
+                    <label for="term">Loan Term:</label>
+                    <select id="term" name="term" class="form-control" required>
+                        <option value="36 months">36 months</option>
+                        <option value="60 months">60 months</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="text-center mt-4">
+                <button type="submit" class="btn btn-primary">Check Credit Score</button>
+            </div>
+        </form>
+        <div id="result" class="result mt-4"></div>
+    </div>
+
+    <script>
+        document.getElementById("data-form").addEventListener("submit", async function(event) {
+            event.preventDefault(); // Prevent form from refreshing the page
+    
+            const formData = new FormData(this);
+    
+            console.log("FormData entries:", [...formData.entries()]); // Log all form entries
+            console.log("Form JSON before submission:", Object.fromEntries(formData.entries())); // Log JSON for reference
+    
+            // Check required fields before submission
+            const requiredFields = ['member_id', 'purpose', 'addr_state', 'loan_issue_date'];
+            const missingFields = requiredFields.filter(field => !formData.get(field) || formData.get(field).trim() === '');
+            if (missingFields.length > 0) {
+                document.getElementById("result").innerHTML = `<p style="color: red;">Error: Missing or empty fields: ${missingFields.join(', ')}</p>`;
+                return;
+            }
+    
+            // Validate and reformat loan_issue_date to YYYY-MM-DD
+            if (formData.get('loan_issue_date')) {
+                const dateMatch = formData.get('loan_issue_date').match(/^(\d{1,2})-([A-Za-z]{3})$/i); // Case-insensitive match
+                if (!dateMatch) {
+                    document.getElementById("result").innerHTML = `<p style="color: red;">Error: Invalid date format for Loan Issue Date. Use DD-MMM (e.g., 25-Feb)</p>`;
+                    return;
+                }
+                const day = dateMatch[1].padStart(2, '0');
+                const monthStr = dateMatch[2].substr(0, 3).toLowerCase();
+                const month = {
+                    'jan': '01', 'feb': '02', 'mar': '03', 'apr': '04', 'may': '05', 'jun': '06',
+                    'jul': '07', 'aug': '08', 'sep': '09', 'oct': '10', 'nov': '11', 'dec': '12'
+                }[monthStr];
+                if (!month) {
+                    document.getElementById("result").innerHTML = `<p style="color: red;">Error: Invalid month in Loan Issue Date</p>`;
+                    return;
+                }
+                // Use 2024 for testing (matches df_loaded dates)
+                const year = 2024;
+                formData.set('loan_issue_date', `${year}-${month}-${day}`); // Update FormData directly
+            }
+    
+            try {
+                const response = await fetch("/predict", {
+                    method: "POST",
+                    body: formData, // Send FormData directly, no JSON.stringify
+                    // No Content-Type header needed; browser sets multipart/form-data automatically
+                });
+    
+                const result = await response.json();
+                if (result.error) {
+                    document.getElementById("result").innerHTML = `<p style="color: red;">Error: ${result.error}</p>`;
+                } else {
+                    document.getElementById("result").innerHTML = `
+                        <p><strong>Member ID:</strong> ${result.member_id}</p>
+                        <p><strong>Original Credit Score:</strong> ${result.original_credit_score}</p>
+                        <p><strong>Adjusted Credit Score:</strong> ${result.adjusted_credit_score}</p>
+                        <p><strong>Narrative:</strong> ${result.narrative}</p>
+                    `;
+                }
+            } catch (error) {
+                document.getElementById("result").innerHTML = `<p style="color: red;">Error: Unexpected response from server - ${error.message}</p>`;
+            }
+        });
+    </script>
+</body>
+</html>
